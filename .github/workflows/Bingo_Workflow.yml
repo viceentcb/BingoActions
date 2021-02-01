@@ -64,9 +64,10 @@ jobs:
       - name: To deploy
         uses: dswistowski/surge-sh-action@v1
         with:
-          domain: viceentcb.surge.sh
+          domain: viceentcb_bingo.surge.sh
           project: .
           login: ${{secrets.SURGELOGIN }}
           token: ${{secrets.SURGETOKEN }}
+      
 
 
