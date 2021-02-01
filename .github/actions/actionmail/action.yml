@@ -1,0 +1,33 @@
+name: "Send Mail"
+description: "Send mail to users by gmail"
+
+inputs:
+  AuthorMail:
+    description: "Email Author"
+    required: true
+  AuthorPasswd:
+    description: "Password Author"
+    required: true
+  RecipientMail:
+    description: "Recipient Mail"
+    required: true
+  SyntaxCheck:
+    description: "SyntaxCheck"
+    required: true
+  TestExecution:
+    description: "TestExecution"
+    required: true
+  BuildStatics:
+    description: "BuildStatics"
+    required: true
+  Deploy:
+    description: "Deploy"
+    required: true
+
+outputs:
+  message:
+    description: "Response message"
+
+runs:
+  using: "node12"
+  main: "dist/index.js"
