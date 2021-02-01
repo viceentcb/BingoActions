@@ -83,10 +83,10 @@ jobs:
           AuthorMail: ${{ secrets.AUTHORMAIL }}
           AuthorPasswd: ${{ secrets.LOGINPASSWD }}
           RecipientMail: ${{ secrets.SURGELOGIN }}
-          SyntaxCheck: ${{syntax_check_job.status}}
-          TestExecution: ${{test_execution_job.status}}
-          BuildStatics: ${{build_statics_job.status}}
-          Deploy: ${{deploy_job.status}} 
+          SyntaxCheck: ${{jobs.syntax_check_job.status}}
+          TestExecution: ${{jobs.test_execution_job.status}}
+          BuildStatics: ${{jobs.build_statics_job.status}}
+          Deploy: ${{jobs.deploy_job.status}} 
 
 
       
