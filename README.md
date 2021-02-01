@@ -6,6 +6,10 @@
         - [¿Que son los Steps?](#Steps)
         - [¿Que son las Actions?](#Actions)
         - [¿Que es un Runner?](#Runner)
+- [Start](#Empecemos)
+    - [Estructura inicial](#Estructura-inicial)
+
+
 
 
 
@@ -49,10 +53,15 @@ Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#G
 <tr>
     <td>
     <br>
-        <img rowspan="2" src="img/dockerfile.png">
+        <img rowspan="2" src="img/estructuraInicial.png">
     </td>
     <td>
-        - Una imagen de node version alpine3.10 <br> - Situarnos en /myapp <br> - Copiaremos todo lo que haya en src hacia nuestro posicionamiento actual <br> - Instalaremos <br> - Expondremos el puerto 300 - <br> - Ejecutaremos node
+      Primero crearemos la estructura inicial del proyecto <br>
+    es decir añadiremos una capreta .github <br> 
+    con dos subcarpetas dentro, actions y workflows. <br> 
+    Dentro de esta ultima crearemos un archivo llamado Bingo_Workflow.yml
     </td>
 </tr>
 </table>
+
+## 
