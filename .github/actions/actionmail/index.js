@@ -19,8 +19,8 @@ function check_skipped(job) {
 var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: send_email,
-      pass: send_pass,
+      user: AuthorMail,
+      pass: AuthorPasswd,
     },
   });
 
