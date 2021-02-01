@@ -59,7 +59,7 @@ jobs:
     steps:
       - name: Download
         uses: actions/download-artifact@v2
-        with:
+        with: 
           name: dist
       - name: To deploy
         uses: dswistowski/surge-sh-action@v1
