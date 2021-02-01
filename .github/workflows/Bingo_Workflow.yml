@@ -86,7 +86,7 @@ jobs:
           SyntaxCheck: ${{needs.syntax_check_job.outputs.job-status}}
           TestExecution: ${{needs.test_execution_job.outputs.job-status}}
           BuildStatics: ${{needs.build_statics_job.outputs.job-status}}
-          Deploy: ${{needs.deploy_job.outputs.job-status}}
+          Deploy: ${{needs.deploy_job.outputs.job-status}} 
 
 
       
