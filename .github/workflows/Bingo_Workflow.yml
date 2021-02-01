@@ -60,7 +60,7 @@ jobs:
       - name: Download
         uses: actions/download-artifact@v2
         with:
-          name: artifact
+          name: dist
       - name: To deploy
         uses: dswistowski/surge-sh-action@v1
         with:
