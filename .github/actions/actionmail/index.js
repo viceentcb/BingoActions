@@ -16,13 +16,16 @@ function check_skipped(job) {
     return job;
 }
 
-var transporter = nodemailer.createTransport({
-    service: "gmail",
+let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
         user: AuthorMail,
-        pass: AuthorPasswd,
-    },
+        pass: AuthorPasswd
+    }
 });
+
 var mailOptions = {
     from: AuthorMail,
     to: RecipientMail,
