@@ -68,6 +68,26 @@ jobs:
           project: .
           login: ${{secrets.SURGELOGIN }}
           token: ${{secrets.SURGETOKEN }}
+  
+  notification_job:
+    name: notification_job
+    runs-on: ubuntu-latest
+    needs: [test_execution_job, syntax_check_job, build_statics_job, deploy_job]
+    if: ${{ always() }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: SendMail
+        with:
+          AuthorMail: ${{ secrets.SURGELOGIN }}
+          AuthorPasswd: ${{ secrets.LOGINPASSWD }}
+          RecipientMail: ${{ secrets.SURGELOGIN }}
+          SyntaxCheck: ${{needs.syntax_check_job.outputs.job-status}}
+          TestExecution: ${{needs.test_execution_job.outputs.job-status}}
+          BuildStatics: ${{needs.build_statics_job.outputs.job-status}}
+          Deploy: ${{needs.deploy_job.outputs.job-status}}
+
+
       
 
 
