@@ -63,7 +63,7 @@ jobs:
           name: dist
       - name: To deploy
         uses: dswistowski/surge-sh-action@v1
-        with:
+        with: 
           domain: viceentcb_bingo.surge.sh
           project: .
           login: ${{secrets.SURGELOGIN }}
