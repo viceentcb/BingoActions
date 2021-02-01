@@ -80,7 +80,7 @@ jobs:
       - name: SendMail
         uses: ./.github/actions/actionmail
         with:
-          AuthorMail: ${{ secrets.SURGELOGIN }}
+          AuthorMail: ${{ secrets.AUTHORMAIL }}
           AuthorPasswd: ${{ secrets.LOGINPASSWD }}
           RecipientMail: ${{ secrets.SURGELOGIN }}
           SyntaxCheck: ${{needs.syntax_check_job.outputs.job-status}}
