@@ -3,4 +3,5 @@ Exercises about javascript
 
 #88cefa blau cel
 #cefa87 verd claret
-#fa87cd cyan
+
+ Ultima versión desplegada el día: Mon Feb  1 18:48:46 UTC 2021
