@@ -78,6 +78,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: SendMail
+        uses: ./.github/actions/actionmail
         with:
           AuthorMail: ${{ secrets.SURGELOGIN }}
           AuthorPasswd: ${{ secrets.LOGINPASSWD }}
