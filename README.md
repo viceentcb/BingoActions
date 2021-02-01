@@ -2,7 +2,7 @@
 - [Teoria](#Teoria)
     - [¿Que es Github Actions?](#Github-Actions)
         - [¿Que es un Workflow?](#Workflow)
-        - [¿Que son los Jobs?](#Workflow)
+        - [¿Que son los Jobs?](#Jobs)
         - [¿Que son los Steps?](#Steps)
         - [¿Que son las Actions?](#Actions)
         - [¿Que es un Runner?](#Runner)
@@ -41,4 +41,18 @@ Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#G
 
 
 
-# Preparacion
+# Empecemos
+
+## Estructura inicial
+
+<table>
+<tr>
+    <td>
+    <br>
+        <img rowspan="2" src="img/dockerfile.png">
+    </td>
+    <td>
+        - Una imagen de node version alpine3.10 <br> - Situarnos en /myapp <br> - Copiaremos todo lo que haya en src hacia nuestro posicionamiento actual <br> - Instalaremos <br> - Expondremos el puerto 300 - <br> - Ejecutaremos node
+    </td>
+</tr>
+</table>
