@@ -6,9 +6,11 @@
         - [¿Que son los Steps?](#Steps)
         - [¿Que son las Actions?](#Actions)
         - [¿Que es un Runner?](#Runner)
-- [Start](#Empecemos)
+- [Start](#Start)
     - [Estructura inicial](#Estructura-inicial)
     - [Sintaxis](#Sintaxis)
+    - [Tests](#Tests)
+
 
 
 
@@ -47,7 +49,7 @@ Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#G
 
 
 
-# Empecemos
+# Start
 
 ## Estructura inicial
 
@@ -71,12 +73,12 @@ Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#G
 <table>
 <tr>
     <td>
+                <img src="img/workflow.png">
+    </td>
+    <td>
     En nuestro workflow Bingo_Workflow.yml haremos lo siguiente: <br>
     - Primero le asignaremos un nombre <br>
     - Segundo le diremos que se ejecute cuando se suba a la rama githubActions_improvement
-    </td>
-    <td>
-            <img src="img/workflow.png">
     </td>
 </tr>
 </table>
@@ -89,13 +91,44 @@ Este [job](#Jobs) se encargara de verificar que la sintáxis utilizada és corre
 <table>
 <tr>
     <td>
-    <br>
         <img src="img/syntax.png">
     </td>
     <td>
         Primero crearemos el objeto job para <br> poder ir haciendo uno detras de otro. <br> El primero será syntax_check_job <br>  al cual le asignaremos varios seteps: <br> <br>
         - Checkout code: Obtendrá el código fuente  <br> del proyecto ejecutando la action actions/checkout@v2<br>
         - Linter execution: Ejecutará la action <br> github/super-linter@v3  con estas variables de entorno.
+    </td>
+</tr>
+<tr>
+    <td>
+    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+    </td>
+    <td>
+            <img src="img/Gsyntax.png">
+    </td>
+</tr>
+</table>
+
+## Tests
+Este [job](#Jobs) se encargara dese ejecutar los tests y verificar que todos funcionan como se esperaba.
+
+<table>
+<tr>
+    <td>
+        <img src="img/tests.png">
+    </td>
+    <td>
+       Añadimos a jobs test_execution_job <br>  al cual le asignaremos varios seteps: <br> <br>
+        - Checkout code: Obtendrá el código fuente  <br> del proyecto ejecutando la action actions/checkout@v2<br>
+        - Run jest test: Instalara lo necesario y ejecutará los tests
+    </td>
+</tr>
+<tr>
+    <td>
+    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+    </td>
+    <td>
+            <img src="img/Gsyntax.png">
     </td>
 </tr>
 </table>
