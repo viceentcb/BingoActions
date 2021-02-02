@@ -73,12 +73,12 @@ Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#G
 <table>
 <tr>
     <td>
-                <img src="img/workflow.png">
+         <img src="img/workflow.png">
     </td>
     <td>
-    En nuestro workflow Bingo_Workflow.yml haremos lo siguiente: <br>
-    - Primero le asignaremos un nombre <br>
-    - Segundo le diremos que se ejecute cuando se suba a la rama githubActions_improvement
+         En nuestro workflow Bingo_Workflow.yml haremos lo siguiente: <br>
+         - Primero le asignaremos un nombre <br>
+         - Segundo le diremos que se ejecute cuando se suba a la   la rama githubActions_improvement
     </td>
 </tr>
 </table>
@@ -101,10 +101,10 @@ Este [job](#Jobs) se encargara de verificar que la sintáxis utilizada és corre
 </tr>
 <tr>
     <td>
-    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+         Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
     </td>
     <td>
-            <img src="img/Gsyntax.png">
+        <img src="img/Gsyntax.png">
     </td>
 </tr>
 </table>
@@ -118,7 +118,7 @@ Este [job](#Jobs) se encargara dese ejecutar los tests y verificar que todos fun
         <img src="img/tests.png">
     </td>
     <td>
-       Añadimos a jobs test_execution_job <br>  al cual le asignaremos varios seteps: <br> <br>
+       Añadimos a jobs test_execution_job, <br>  al cual le indicaremos que se ejecute <br> tras el job de linter,  ademas de  varios seteps: <br> 
         - Checkout code: Obtendrá el código fuente  <br> del proyecto ejecutando la action actions/checkout@v2<br>
         - Run jest test: Instalara lo necesario y ejecutará los tests
     </td>
