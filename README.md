@@ -12,8 +12,18 @@
     - [Tests](#Tests)
     - [Statics](#Statics)
     - [Deploy](#Deploy)
-        - [Configuracion](#Configuracion)
-        - [Job](#Job)
+        - [Configuracion](#Deploy-Configuracion)
+        - [Job](#Deploy-Job)
+    - [Notification](#Notification)
+        - [Job](#Notification-Job)
+         - [Action](#Action)
+            - [Estructura](#Estructura)
+            - [Configuracion](#Action-Configuracion)
+            - [JS](#JS)
+
+
+
+
 
 
 
@@ -159,7 +169,7 @@ Este [job](#Jobs) se encargara de realizar el proceso de compilado del proyecto.
 ## Deploy
 En este [job](#Jobs) partiendo de los estáticos generados en el job anterior desplegará el proyecto en surge.sh.
 
-### Configuracion
+### Deploy Configuracion
 Antes de empezar con este job debemos configurar algunas cosas.
 
 Primero debemos instalar surge de manera global &nbsp; ->  &nbsp;
@@ -183,7 +193,7 @@ Ahora ejecutaremos &nbsp; ->  &nbsp;` surge`
 Ahora ejecutaremos ` surge token ` lo cual nos mostrara nuestro token. Posteriromente iremos a nuestro proyecto de github -> Settings -> Secrets. Una vez alli crearemos un nuevo secret y elegiremos un valor para el correo y pondremos nuestro correo. En mi caso elegí  SURGELOGIN. Una vez creado este, crearemos un nuevo secret pero esta vez con el token obtenido anteriormente, en mi caso lo llame SURGETOKEN. <br><br>
 <img src="img/surgesecrets.png">
 
-## Job
+### Deploy Job
 <table>
 <tr>
     <td>
@@ -205,3 +215,73 @@ Ahora ejecutaremos ` surge token ` lo cual nos mostrara nuestro token. Posteriro
 </tr>
 </table>
 
+
+## Notification
+Este [job](#Jobs) se encargara de ejecutar una action que se encargará de enviar un correo.
+
+### Notification Job
+<table>
+<tr>
+    <td>
+        <img src="img/outputs.png">
+    </td>
+    <td>
+      Como observamos en este job, hemos añadido un output llamado StatusJob
+    </td>
+</tr>
+<tr>
+    <td>
+        <img src="img/notification.png">
+    </td>
+    <td>
+       Añadimos a jobs notification_job, <br>  al cual le indicaremos que se ejecute <br> tras todos los anteriores jobs, que se ejecute siempre aunque algun job haya fallado <br> ademas de crear varios steps: <br> 
+        - Checkout code: Obtendrá el código fuente  <br> del proyecto ejecutando la action actions/checkout@v2<br>
+        - SendMail: Ejecutara la action de la dirección indicada con los datos indicados, en nuestro caso: <br>
+        - Las credenciales del correo emisor.<br>
+        - El correo receptor.<br>
+        - Los estados de los anteriores jobs.<br>
+    </td>
+</tr>
+</table>
+
+### Action
+
+#### Estructura
+
+<table>
+<tr>
+    <td>
+    <br>
+        <img src="img/EstructuraAction.png">
+    </td>
+    <td>
+      Primero crearemos la estructura de la acction <br>
+    es decir dentro de nuestra carpeta actions <br> 
+    crearemos una subcarpetas dentro con el <br> nombre de nuestra action, en mi caso actionmail <br>
+    Dentro de esta ultima crearemos un action.yml e index.js 
+    </td>
+</tr>
+</table>
+
+#### Action Configuracion
+
+Ahora nos situaremos en el directorio actionmail y ejecutaremos &nbsp; ` npm init `  &nbsp; asi se nos creará nuestro package.json. Posteriormente ejecutaremos  &nbsp; `npm install`,  &nbsp; ` npm install @actions/core `, &nbsp; `npm install nodemailer` &nbsp; y &nbsp;`npm install -g @vercel/ncc` &nbsp; para posteriormente ejecutarlo y que así nos cree el dist que se muestra en la imagen
+
+
+#### JS
+Las actions se pueden basar en Javascript o en Docker, en nuestro caso, hemos elegido js.
+
+<table>
+<tr>
+    <td>
+    <br>
+        <img src="img/EstructuraAction.png">
+    </td>
+    <td>
+      Primero crearemos la estructura de la acction <br>
+    es decir dentro de nuestra carpeta actions <br> 
+    crearemos una subcarpetas dentro con el <br> nombre de nuestra action, en mi caso actionmail <br>
+    Dentro de esta ultima crearemos un action.yml e index.js 
+    </td>
+</tr>
+</table>
