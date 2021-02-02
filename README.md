@@ -19,13 +19,9 @@
          - [Action](#Action)
             - [Estructura](#Estructura)
             - [Configuracion](#Action-Configuracion)
+            - [YML](#YML)
             - [JS](#JS)
-
-
-
-
-
-
+    - [Readme](#Readme)
 
 
 # Teoria
@@ -53,8 +49,6 @@ Comandos independientes que se combinan formando [steps](#Steps). Son el bloque 
 
 ### Runner
 Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#Github-Actions)
-
-
 
 
 # Start
@@ -226,7 +220,8 @@ Este [job](#Jobs) se encargara de ejecutar una action que se encargará de envia
         <img src="img/outputs.png">
     </td>
     <td>
-      Como observamos en este job, hemos añadido un output llamado StatusJob
+      Como observamos en este job, <br> hemos añadido un output llamado StatusJob, <br> el cual devuelve el estado del job. <br>
+      Esto lo repetiremos en todos los demas jobs (menos en el de notification_job).
     </td>
 </tr>
 <tr>
@@ -237,8 +232,8 @@ Este [job](#Jobs) se encargara de ejecutar una action que se encargará de envia
        Añadimos a jobs notification_job, <br>  al cual le indicaremos que se ejecute <br> tras todos los anteriores jobs, que se ejecute siempre aunque algun job haya fallado <br> ademas de crear varios steps: <br> 
         - Checkout code: Obtendrá el código fuente  <br> del proyecto ejecutando la action actions/checkout@v2<br>
         - SendMail: Ejecutara la action de la dirección indicada con los datos indicados, en nuestro caso: <br>
-        - Las credenciales del correo emisor.<br>
-        - El correo receptor.<br>
+        - Las credenciales del correo emisor <br>(Las cuales guardaremos en dos secrets nuevos de github como hemos mostrado anteriormente con surge).<br>
+        - El correo receptor.<br>(En mi caso he utilizado el mismo correo que en el surge, por eso el mismo secret)<br>
         - Los estados de los anteriores jobs.<br>
     </td>
 </tr>
@@ -268,6 +263,30 @@ Este [job](#Jobs) se encargara de ejecutar una action que se encargará de envia
 Ahora nos situaremos en el directorio actionmail y ejecutaremos &nbsp; ` npm init `  &nbsp; asi se nos creará nuestro package.json. Posteriormente ejecutaremos  &nbsp; `npm install`,  &nbsp; ` npm install @actions/core `, &nbsp; `npm install nodemailer` &nbsp; y &nbsp;`npm install -g @vercel/ncc` &nbsp; para posteriormente ejecutarlo y que así nos cree el dist que se muestra en la imagen
 
 
+
+#### YML 
+<table>
+<tr>
+    <td>
+    <br>
+        <img src="img/actionyml.png">
+    </td>
+    <td>
+        - Primero añadiremos un nombre al yml <br>
+        - Ahora crearemos una descripcion <br>
+        - Posteriormente crearemos un objeto inputs: <br>
+        - Dentro de este iremos creando las variables indicadas en el workflow <br>
+        - Deberan tener: <br>
+         &nbsp; &nbsp;&nbsp; - una descripcion <br>
+        &nbsp; &nbsp;&nbsp;  - required: true <br>
+        - Finalmente en el objeto runs añadiremos: <br>
+                 &nbsp; &nbsp;&nbsp; - Usará node12 <br>
+                &nbsp; &nbsp;&nbsp; - El archivo que ejecutará estará en la ruta indicada <br>
+                (En nuestro caso el index.js compilado por el vercel en dist)
+    </td>
+</tr>
+</table>
+
 #### JS
 Las actions se pueden basar en Javascript o en Docker, en nuestro caso, hemos elegido js.
 
@@ -275,13 +294,48 @@ Las actions se pueden basar en Javascript o en Docker, en nuestro caso, hemos el
 <tr>
     <td>
     <br>
-        <img src="img/EstructuraAction.png">
+        <img src="img/actionjs.png">
     </td>
     <td>
-      Primero crearemos la estructura de la acction <br>
-    es decir dentro de nuestra carpeta actions <br> 
-    crearemos una subcarpetas dentro con el <br> nombre de nuestra action, en mi caso actionmail <br>
-    Dentro de esta ultima crearemos un action.yml e index.js 
+        - Primero obtendremos las variables que necesitemos <br>
+        - La funcion check_skipperd es para comprobar si algun job ha sido "skipeado" <br>
+        - Posteriormente crearemos el transporter, el cual <br> deberá tener el servicio gmail y las credenciales <br> del correo emisor <br>
+        - Ahora escribiremos el correo que queremos mandar con <br>
+        El correo emisor, el correo receptor, el titulo <br> del mensaje, y el cuerpo de este. <br>
+        - Por ultimo enviaremos el email.
+    </td>
+</tr>
+<tr>
+    <td>
+    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+    </td>
+    <td>
+            <img src="img/Gnotification.png">
+    </td>
+</tr>
+</table>
+
+## Readme
+Este [job](#Jobs) se encargara deactualizar el contenido del README principal del proyecto para que muestre un texto al final con “Ultima versión desplegada el día: FECHA_DE_ÚLTIMO_DESPLIEGUE”.
+
+<table>
+<tr>
+    <td>
+        <img src="img/upreadme.png">
+    </td>
+    <td>
+       Añadimos a jobs update_readme_job, <br>  al cual le indicaremos que se ejecute <br> solamente si deploy_job se ha ejecutado correctamente, <br> ademas de los siguientes steps: <br> 
+        - Checkout code: Obtendrá el código fuente  <br> del proyecto ejecutando la action actions/checkout@v2<br>
+        - New Line Readme: Borrará la ultima linea del readme <br> y añadirá la linea indicada anteriormente.
+        - Push: Subirá los cambios a la rama
+    </td>
+</tr>
+<tr>
+    <td>
+    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+    </td>
+    <td>
+            <img src="img/Gupreadme.png">
     </td>
 </tr>
 </table>
