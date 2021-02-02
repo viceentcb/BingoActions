@@ -8,6 +8,8 @@
         - [¿Que es un Runner?](#Runner)
 - [Start](#Empecemos)
     - [Estructura inicial](#Estructura-inicial)
+    - [Sintaxis](#Sintaxis)
+
 
 
 
@@ -53,7 +55,7 @@ Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#G
 <tr>
     <td>
     <br>
-        <img rowspan="2" src="img/estructuraInicial.png">
+        <img src="img/estructuraInicial.png">
     </td>
     <td>
       Primero crearemos la estructura inicial del proyecto <br>
@@ -64,4 +66,36 @@ Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#G
 </tr>
 </table>
 
-## 
+## Workflow
+
+<table>
+<tr>
+    <td>
+    En nuestro workflow Bingo_Workflow.yml haremos lo siguiente: <br>
+    - Primero le asignaremos un nombre <br>
+    - Segundo le diremos que se ejecute cuando se suba a la rama githubActions_improvement
+    </td>
+    <td>
+            <img src="img/workflow.png">
+    </td>
+</tr>
+</table>
+
+Cabe destacar que todos nuestros jobs tendran como valor nombre su nombre de job y todos se ejecutaran en un runner ubuntu-lastest
+
+## Sintaxis
+Este [job](#Jobs) se encargara de verificar que la sintáxis utilizada és correcta en los ficheros javascript.
+
+<table>
+<tr>
+    <td>
+    <br>
+        <img src="img/syntax.png">
+    </td>
+    <td>
+        Primero crearemos el objeto job para <br> poder ir haciendo uno detras de otro. <br> El primero será syntax_check_job <br>  al cual le asignaremos varios seteps: <br> <br>
+        - Checkout code: Obtendrá el código fuente  <br> del proyecto ejecutando la action actions/checkout@v2<br>
+        - Linter execution: Ejecutará la action <br> github/super-linter@v3  con estas variables de entorno.
+    </td>
+</tr>
+</table>
