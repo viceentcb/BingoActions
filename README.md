@@ -8,14 +8,12 @@
         - [¿Que es un Runner?](#Runner)
 - [Start](#Start)
     - [Estructura inicial](#Estructura-inicial)
-    - [Sintaxis](#Sintaxis)
+    - [Syntax](#Syntax)
     - [Tests](#Tests)
-
-
-
-
-
-
+    - [Statics](#Statics)
+    - [Deploy](#Deploy)
+        - [Configuracion](#Configuracion)
+        - [Job](#Job)
 
 
 
@@ -85,7 +83,7 @@ Servidor que tiene instalada la aplicación de ejecución de [Github Actions](#G
 
 Cabe destacar que todos nuestros jobs tendran como valor nombre su nombre de job y todos se ejecutaran en un runner ubuntu-lastest
 
-## Sintaxis
+## Syntax
 Este [job](#Jobs) se encargara de verificar que la sintáxis utilizada és correcta en los ficheros javascript.
 
 <table>
@@ -110,7 +108,7 @@ Este [job](#Jobs) se encargara de verificar que la sintáxis utilizada és corre
 </table>
 
 ## Tests
-Este [job](#Jobs) se encargara dese ejecutar los tests y verificar que todos funcionan como se esperaba.
+Este [job](#Jobs) se encargara de ejecutar los tests y verificar que todos funcionan como se esperaba.
 
 <table>
 <tr>
@@ -128,7 +126,82 @@ Este [job](#Jobs) se encargara dese ejecutar los tests y verificar que todos fun
     Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
     </td>
     <td>
-            <img src="img/Gsyntax.png">
+            <img src="img/Gtests.png">
     </td>
 </tr>
 </table>
+
+## Statics
+Este [job](#Jobs) se encargara de realizar el proceso de compilado del proyecto.
+
+<table>
+<tr>
+    <td>
+        <img src="img/statics.png">
+    </td>
+    <td>
+       Añadimos a jobs test_execution_job, <br>  al cual le indicaremos que se ejecute <br> tras los jobs de linter, y test  ademas de  varios seteps: <br> 
+        - Checkout code: Obtendrá el código fuente  <br> del proyecto ejecutando la action actions/checkout@v2<br>
+        - build: Instalara lo necesario y ejecutará un run builDev <br>
+        - artifact: Compilara el codigo de la app a el directorio <br> indicado, en nuestro caso dist
+    </td>
+</tr>
+<tr>
+    <td>
+    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+    </td>
+    <td>
+            <img src="img/Gstatics.png">
+    </td>
+</tr>
+</table>
+
+## Deploy
+En este [job](#Jobs) partiendo de los estáticos generados en el job anterior desplegará el proyecto en surge.sh.
+
+### Configuracion
+Antes de empezar con este job debemos configurar algunas cosas.
+
+Primero debemos instalar surge de manera global &nbsp; ->  &nbsp;
+` sudo npm install -g surge `
+
+Ahora ejecutaremos &nbsp; ->  &nbsp;` surge` 
+
+<table>
+<tr>
+    <td>
+        <img src="img/surgedoc.png">
+    </td>
+    <td>
+     - Añadimos un email y un password <br>
+     - Elegimos la direccion de nuestro proyecto <br> (si ejecutamos el comando en el directorio se pondrá automaticamente ) <br>
+     - Indicamos un dominio
+    </td>
+</tr>
+</table>
+
+Ahora ejecutaremos ` surge token ` lo cual nos mostrara nuestro token. Posteriromente iremos a nuestro proyecto de github -> Settings -> Secrets. Una vez alli crearemos un nuevo secret y elegiremos un valor para el correo y pondremos nuestro correo. En mi caso elegí  SURGELOGIN. Una vez creado este, crearemos un nuevo secret pero esta vez con el token obtenido anteriormente, en mi caso lo llame SURGETOKEN. <br><br>
+<img src="img/surgesecrets.png">
+
+## Job
+<table>
+<tr>
+    <td>
+        <img src="img/deploy.png">
+    </td>
+    <td>
+       Añadimos a jobs deploy_job, <br>  al cual le indicaremos que se ejecute <br> tras el job de statics ademas de  varios seteps: <br> 
+        - Download: Obtendrá el código fuente  <br> del proyecto (en este caso de dist) ejecutando la action actions/checkout@v2<br>
+        - To Deploy: Desplegará este codigo en nuestro dominio indicado con nuestros secrets indicados anteriromente.
+    </td>
+</tr>
+<tr>
+    <td>
+    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+    </td>
+    <td>
+            <img src="img/Gdeploy.png">
+    </td>
+</tr>
+</table>
+
