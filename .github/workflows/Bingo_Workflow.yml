@@ -56,7 +56,7 @@ jobs:
           name: dist
           path: ./dist
     outputs:
-      job-status: ${{ job.status }}
+      job-status: ${{ job.status }} 
 
   # deploy_job:
   #   name: deploy_job
