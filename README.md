@@ -312,7 +312,6 @@ Las actions se pueden basar en Javascript o en Docker, en nuestro caso, hemos el
     <td>
             <img src="img/Gnotification.png">
             <img src="img/mailnotification.png">
-
     </td>
 </tr>
 </table>
