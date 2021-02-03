@@ -307,10 +307,12 @@ Las actions se pueden basar en Javascript o en Docker, en nuestro caso, hemos el
 </tr>
 <tr>
     <td>
-    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente y que nos ha llegado el mail
     </td>
     <td>
             <img src="img/Gnotification.png">
+            <img src="img/mailnotification.png">
+
     </td>
 </tr>
 </table>
@@ -332,10 +334,11 @@ Este [job](#Jobs) se encargara deactualizar el contenido del README principal de
 </tr>
 <tr>
     <td>
-    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente
+    Una vez subidos estos cambios a nuestro <br> repositorio podremos comprobar que  <br>  todo funciona correctamente y se nos ha cambiado la fecha del readme. 
     </td>
     <td>
             <img src="img/Gupreadme.png">
+            <img src="img/modreadme.png">
     </td>
 </tr>
 </table>
